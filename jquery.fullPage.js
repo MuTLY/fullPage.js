@@ -1745,11 +1745,12 @@
         * Adds transition animations for the given element
         */
         function addAnimation(element){
-            var transition = 'all ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
+            var transition = 'transform ' + options.scrollingSpeed + 'ms ' + options.easingcss3,
+                webkitTransition = '-webkit-transform ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
 
             element.removeClass(NO_TRANSITION);
             return element.css({
-                '-webkit-transition': transition,
+                '-webkit-transition': webkitTransition,
                 'transition': transition
             });
         }
