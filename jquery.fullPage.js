@@ -375,8 +375,8 @@
 
             isResizing = true;
 
-            var windowsWidth = $window[0].outerWidth;
-            windowsHeight = $window[0].outerHeight;  //updating global var
+            var windowsWidth = $window[0].innerWidth;
+            windowsHeight = $window[0].innerHeight;  //updating global var
 
             //text resizing
             if (options.resize) {
@@ -454,7 +454,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = $window[0].outerHeight;
+        var windowsHeight = $window[0].innerHeight;
         var isResizing = false;
         var lastScrolledDestiny;
         var lastScrolledSlide;
@@ -933,7 +933,7 @@
                     if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartX - touchEndX) > ($window[0].outerWidth / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartX - touchEndX) > ($window[0].innerWidth / 100 * options.touchSensitivity)) {
                             if (touchStartX > touchEndX) {
                                 if(isScrollAllowed.m.right){
                                     FP.moveSlideRight(); //next
@@ -950,7 +950,7 @@
                     else if(options.autoScrolling){
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window[0].outerHeight / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartY - touchEndY) > ($window[0].innerHeight / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
                                 scrolling('down', scrollable);
                             } else if (touchEndY > touchStartY) {
@@ -1700,7 +1700,7 @@
 
                 //if the keyboard is NOT visible
                 if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
-                    var currentHeight = $window[0].outerHeight;
+                    var currentHeight = $window[0].innerHeight;
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
@@ -1728,7 +1728,7 @@
             var heightLimit = options.responsiveHeight;
 
             if(widthLimit){
-                FP.setResponsive($window[0].outerWidth < widthLimit);
+                FP.setResponsive($window[0].innerWidth < widthLimit);
             }
 
             if(heightLimit){
@@ -1736,7 +1736,7 @@
 
                 //if its not already in responsive mode because of the `width` limit
                 if(!isResponsive){
-                    FP.setResponsive($window[0].outerHeight < heightLimit);
+                    FP.setResponsive($window[0].innerHeight < heightLimit);
                 }
             }
         }
